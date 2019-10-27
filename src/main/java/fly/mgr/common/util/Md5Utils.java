@@ -110,4 +110,9 @@ public class Md5Utils {
 		return md5Hex(originalStr + salt).equals(String.valueOf(cs1));
 	}
 	
+	
+	public static void main(String[] args) {
+        System.out.println(getSaltMD5("admin@2019"));
+    }
+	
 }

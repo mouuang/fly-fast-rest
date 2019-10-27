@@ -33,7 +33,7 @@ public class StringUtils {
 	 * @param input
 	 * @return boolean
 	 */
-	public static boolean isEmpty(final String input) {
+	public static boolean isBlank(final String input) {
 		if (null == input) {
 			return true;
 		}
@@ -48,8 +48,8 @@ public class StringUtils {
 	 * @param: str 
 	 * @return boolean
 	 */
-	public static boolean isNotEmpty(final String input) {
-		return !isEmpty(input);
+	public static boolean isNotBlank(final String input) {
+		return !isBlank(input);
 	}
 	
 	/**

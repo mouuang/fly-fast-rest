@@ -14,12 +14,12 @@ public interface SysConstant {
     /**
      * 通用正常
      */
-    int SUCCESS_CODE = 1;
+    String SUCCESS_CODE = "1";
     
     /**
      * 通用异常
      */
-    int ERROR_CODE = 0;
+    String ERROR_CODE = "0";
     
     /**
      * 默认消息

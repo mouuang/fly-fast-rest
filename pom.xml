@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fly.mgr</groupId>
-	<artifactId>fly.mgr.fast</artifactId>
+	<artifactId>fly.mgr</artifactId>
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 	<name>fly-mgr-fast</name>
@@ -113,14 +113,5 @@
         </dependency>
 
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>

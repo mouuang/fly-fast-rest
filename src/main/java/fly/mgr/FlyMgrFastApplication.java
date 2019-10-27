@@ -6,13 +6,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FlyMgrApplication {
+public class FlyMgrFastApplication {
     
-    private static final Logger logger = LoggerFactory.getLogger(FlyMgrApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(FlyMgrFastApplication.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(FlyMgrApplication.class, args);
-		logger.info("FlyMgrApplication start success.");
+		SpringApplication.run(FlyMgrFastApplication.class, args);
+		logger.info("FlyMgrFastApplication start success.");
 	}
 
 }
