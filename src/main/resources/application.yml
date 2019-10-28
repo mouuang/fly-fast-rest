@@ -7,7 +7,7 @@ server:
   port: 18088
   connection-timeout: 5000ms
   servlet:
-    context-path: /mgr-fast
+    context-path: /fly-fast
 
 spring:
   # 环境 dev|test|prod

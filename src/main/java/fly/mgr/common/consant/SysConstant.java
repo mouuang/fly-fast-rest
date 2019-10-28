@@ -27,4 +27,9 @@ public interface SysConstant {
     String DEFAULT_SUCCESS_MSG = "ok";
     
     String DEFAULT_ERROR_MSG = "系统异常：请稍后重试。";
+    
+    /**
+     * token 有效期
+     */
+    int TOKEN_VALIDITY_HOUR = 4;
 }

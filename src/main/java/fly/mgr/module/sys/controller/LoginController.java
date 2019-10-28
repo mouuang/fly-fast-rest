@@ -2,16 +2,18 @@ package fly.mgr.module.sys.controller;
 
 import java.util.Map;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import fly.mgr.common.util.Md5Utils;
 import fly.mgr.common.util.ResultMap;
+import fly.mgr.module.sys.entity.SysUserEntity;
+import fly.mgr.module.sys.service.SysUserService;
+import fly.mgr.module.sys.service.SysUserTokenService;
 
 /**
  * 系统用户登陆
@@ -21,29 +23,35 @@ import fly.mgr.common.util.ResultMap;
 public class LoginController {
     
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
+    
+    @Autowired
+    private SysUserService userService;
+    
+    @Autowired
+    private SysUserTokenService tokenService;
 
     /**
      * 登陆
      * @param name      
      * @param password
      * @return
+     * @throws Exception 
      */
     @PostMapping("/login")
     public ResultMap login(@RequestBody Map<String, String> params) {
-        // 使用shiro编写认证操作
-        Subject subject = SecurityUtils.getSubject();
+        String userCode = params.get("userCode");
+        String password = params.get("password");
+        SysUserEntity user = userService.queryByUserCode(userCode);
+        if (user == null || !Md5Utils.checkSaltMD5(password, user.getPassword())) {
+            return ResultMap.error("用户名或密码错误");
+        }
         
-        // 1.封装用户数据
-        UsernamePasswordToken token = new UsernamePasswordToken(params.get("userCode"), params.get("password"));
-        
-        // 2.调用shiro中的认证方法
-        try {
-            subject.login(token);
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            return ResultMap.error(e.getMessage());
-        } 
-        
-        return ResultMap.success("登陆成功");
+        if (user.getStatus() != 1) {
+            return ResultMap.error("账号已被锁定，请联系管理员");
+        }
+        logger.info("user={}", user.getUserId());
+        // 生成token
+        String token = tokenService.createToken(user.getUserId());
+        return ResultMap.success("登陆成功").put("token", token);
     }
 }

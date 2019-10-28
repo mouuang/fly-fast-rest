@@ -40,7 +40,7 @@ public class Md5Utils {
                 str[k++] = DIGITS_CHAR[byte0 >>> 4 & 0xf];
                 str[k++] = DIGITS_CHAR[byte0 & 0xf];
             }
-            return new String(str);
+            return new String(str).toLowerCase();
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -78,7 +78,7 @@ public class Md5Utils {
 			cs[i + 1] = c;
 			cs[i + 2] = hex.charAt(i / 3 * 2 + 1);
 		}
-		return String.valueOf(cs);
+		return String.valueOf(cs).toLowerCase();
 	}
 	
 	/**

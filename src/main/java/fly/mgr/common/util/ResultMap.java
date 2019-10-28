@@ -43,4 +43,9 @@ public class ResultMap extends HashMap<String, Object> {
         return r;
     }
     
+    public ResultMap put(String key, Object value) {
+        super.put(key, value);
+        return this;
+    }
+    
 }

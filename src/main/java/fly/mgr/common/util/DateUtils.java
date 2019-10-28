@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -62,6 +63,32 @@ public class DateUtils {
         SimpleDateFormat simple = new SimpleDateFormat(pattern);
         simple.setLenient(false);  
         return simple.parse(dateStr);  
+    }
+    
+    /**
+     * 获取小时后的时间
+     * @param date
+     * @param hour
+     * @return
+     */
+    public static Date getDateAddHour(Date date, int hour) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.HOUR, hour);
+        return cal.getTime();
+    }
+    
+    /**
+     * 获取天后的时间
+     * @param date
+     * @param hour
+     * @return
+     */
+    public static Date getDateAddDay(Date date, int day) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DAY_OF_MONTH, day);
+        return cal.getTime();
     }
 
 }
