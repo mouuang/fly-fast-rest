@@ -1,2 +1,2 @@
-# fly-fast
-前后端分离开发框架
+# fly-fast-rest
+前后端分离之 后端ssm 搭建
